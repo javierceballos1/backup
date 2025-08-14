@@ -1,0 +1,1587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+  xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx"
+  ncx:last-modified="2025-08-14T19:59:04Z" ncx:etag="693"
+  xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <aaa xmlns="http://www.dellemc.com/networking/os10/dell-system">
+    <authentication>
+      <user-authentication-order>local</user-authentication-order>
+    </authentication>
+    <console>
+      <user-authentication-order>local</user-authentication-order>
+    </console>
+  </aaa>
+  <bgp-router xmlns="http://www.dellemc.com/networking/os10/dell-bgp">
+    <vrf>
+      <vrf-name>default</vrf-name>
+      <local-as-number>65200</local-as-number>
+      <router-id>10.0.0.11</router-id>
+      <peer-config>
+        <remote-address>172.16.1.2</remote-address>
+        <remote-as>65100</remote-as>
+        <description>BGPTOSPINE1LINK1</description>
+        <shutdown-status>false</shutdown-status>
+      </peer-config>
+      <peer-config>
+        <remote-address>172.16.1.6</remote-address>
+        <remote-as>65101</remote-as>
+        <description>BGPTOSPINE2LINK2</description>
+        <shutdown-status>false</shutdown-status>
+      </peer-config>
+      <peer-config>
+        <remote-address>10.0.0.1</remote-address>
+        <remote-as>65100</remote-as>
+        <description>BGPPEERLOOPBACK</description>
+        <ebgp-multihop-count>4</ebgp-multihop-count>
+        <shutdown-status>false</shutdown-status>
+        <timers>
+          <config-keepalive>1</config-keepalive>
+          <config-hold-time>3</config-hold-time>
+        </timers>
+        <update-source-interface>loopback0</update-source-interface>
+        <send-community-extended>true</send-community-extended>
+        <ipv4-unicast>
+          <activate>false</activate>
+        </ipv4-unicast>
+        <l2vpn-evpn>
+          <activate>true</activate>
+        </l2vpn-evpn>
+      </peer-config>
+      <peer-config>
+        <remote-address>10.0.0.2</remote-address>
+        <remote-as>65101</remote-as>
+        <description>BGPPEERLOOPBACK</description>
+        <ebgp-multihop-count>4</ebgp-multihop-count>
+        <shutdown-status>false</shutdown-status>
+        <timers>
+          <config-keepalive>1</config-keepalive>
+          <config-hold-time>3</config-hold-time>
+        </timers>
+        <update-source-interface>loopback0</update-source-interface>
+        <send-community-extended>true</send-community-extended>
+        <ipv4-unicast>
+          <activate>false</activate>
+        </ipv4-unicast>
+        <l2vpn-evpn>
+          <activate>true</activate>
+        </l2vpn-evpn>
+      </peer-config>
+      <peer-config>
+        <remote-address>192.168.200.2</remote-address>
+        <remote-as>65200</remote-as>
+        <description>BGPVLTPEER</description>
+        <shutdown-status>false</shutdown-status>
+      </peer-config>
+      <ipv4-unicast>
+        <redistribute-connected>
+          <enable/>
+        </redistribute-connected>
+      </ipv4-unicast>
+    </vrf>
+  </bgp-router>
+  <classifier-entry xmlns="http://www.dellemc.com/networking/os10/dell-diffserv-classifier">
+    <name>class-iscsi</name>
+    <mtype>application</mtype>
+  </classifier-entry>
+  <cli-config xmlns="http://www.dellemc.com/networking/os10/dell-cli">
+    <features>
+      <name>config-os9-style</name>
+    </features>
+  </cli-config>
+  <config xmlns="http://www.dellemc.com/networking/os10/dell-xstp">
+    <system-params>
+      <br-index>0</br-index>
+      <mode>rstp</mode>
+    </system-params>
+  </config>
+  <dhcp-relay-vrf-configs xmlns="http://www.dellemc.com/networking/os10/dell-dhcp">
+    <instance>
+      <vrf-name>tenant1</vrf-name>
+    </instance>
+  </dhcp-relay-vrf-configs>
+  <evpn xmlns="http://www.dellemc.com/networking/os10/nvo-evpn">
+    <evi>
+      <id>500</id>
+      <vnid>500</vnid>
+      <rd>1:20.0.0.11:500</rd>
+      <rt>
+        <value>0:62000:500</value>
+        <type>both</type>
+      </rt>
+      <rt>
+        <value>0:63000:500</value>
+        <type>import</type>
+      </rt>
+    </evi>
+    <evi>
+      <id>600</id>
+      <vnid>600</vnid>
+      <rd>1:20.0.0.13:600</rd>
+      <rt>
+        <value>0:62000:600</value>
+        <type>both</type>
+      </rt>
+      <rt>
+        <value>0:63000:600</value>
+        <type>import</type>
+      </rt>
+    </evi>
+  </evpn>
+  <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+    <interface>
+      <name>ethernet1/1/1</name>
+      <description>LINKTOSPINE1LINK1</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>172.16.1.1/30</primary-addr>
+        </address>
+      </ipv4>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2DISABLED</mode>
+      <mtu xmlns="http://www.dellemc.com/networking/os10/dell-interface">9216</mtu>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/2</name>
+      <description>LINKTOSPINE2LINK2</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>172.16.1.5/30</primary-addr>
+        </address>
+      </ipv4>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2DISABLED</mode>
+      <mtu xmlns="http://www.dellemc.com/networking/os10/dell-interface">9216</mtu>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/3</name>
+      <description>LINKTOPC1</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/4</name>
+      <description>LINKTOSWCLIENTE1</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2DISABLED</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/5</name>
+      <description>LINKTOPC7</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/6</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/7</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/8</name>
+      <description>VLTLINK</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2DISABLED</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/9</name>
+      <description>VLTLINK</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2DISABLED</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/10</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/11</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/12</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/13</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/14</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/15</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/16</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/17</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/18</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/19</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/20</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/21</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/22</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/23</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/24</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>false</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/25</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/26</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/27</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>ethernet1/1/28</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+      <enabled>true</enabled>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <lldp-med-cfg xmlns="http://www.dellemc.com/networking/os10/dell-lldp-med">
+        <med-enable>true</med-enable>
+      </lldp-med-cfg>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2</mode>
+      <qos-cfg xmlns="http://www.dellemc.com/networking/os10/dell-qos">
+        <flow-control-rx>false</flow-control-rx>
+      </qos-cfg>
+    </interface>
+    <interface>
+      <name>mgmt1/1/1</name>
+      <type
+        xmlns:base-if="http://www.dellemc.com/networking/os10/dell-base-interface-common">base-if:management</type>
+      <enabled>true</enabled>
+      <duplex xmlns="http://www.dellemc.com/networking/os10/dell-interface">auto</duplex>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>192.168.1.150/24</primary-addr>
+        </address>
+      </ipv4>
+      <ipv6 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <autoconfig>true</autoconfig>
+        <intf-v6-enabled>true</intf-v6-enabled>
+      </ipv6>
+      <lldp xmlns="http://www.dellemc.com/networking/os10/dell-lldp">
+        <tx-enable>true</tx-enable>
+        <rx-enable>true</rx-enable>
+      </lldp>
+      <mtu xmlns="http://www.dellemc.com/networking/os10/dell-interface">1532</mtu>
+      <speed xmlns="http://www.dellemc.com/networking/os10/dell-interface">AUTO</speed>
+    </interface>
+    <interface>
+      <name>null0</name>
+      <type
+        xmlns:base-if="http://www.dellemc.com/networking/os10/dell-base-interface-common">base-if:null</type>
+      <enabled>true</enabled>
+    </interface>
+    <interface>
+      <name>vlan1</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+      <enabled>true</enabled>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/6</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/7</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/10</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/11</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/12</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/13</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/14</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/15</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/16</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/17</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/18</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/19</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/20</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/21</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/22</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/23</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/24</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/25</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/26</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/27</untagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/28</untagged-ports>
+    </interface>
+    <interface>
+      <name>loopback0</name>
+      <description>BGPLOOPBACK</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:softwareLoopback</type>
+      <enabled>true</enabled>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>10.0.0.11/32</primary-addr>
+        </address>
+      </ipv4>
+    </interface>
+    <interface>
+      <name>loopback1</name>
+      <description>VTEPLOOPBACK</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:softwareLoopback</type>
+      <enabled>true</enabled>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>20.0.0.11/32</primary-addr>
+        </address>
+      </ipv4>
+    </interface>
+    <interface>
+      <name>vlan4000</name>
+      <description>VLANVLT</description>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>192.168.200.1/24</primary-addr>
+        </address>
+      </ipv4>
+    </interface>
+    <interface>
+      <name>port-channel10</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ieee8023adLag</type>
+      <member-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">
+        <name>ethernet1/1/4</name>
+      </member-ports>
+      <mode xmlns="http://www.dellemc.com/networking/os10/dell-interface">MODE_L2HYBRID</mode>
+      <vlt xmlns="http://www.dellemc.com/networking/os10/dell-vlt">
+        <vlt-id>10</vlt-id>
+      </vlt>
+    </interface>
+    <interface>
+      <name>vlan5</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+      <parent-bridge xmlns="http://www.dellemc.com/networking/os10/dell-interface">500</parent-bridge>
+      <tagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">port-channel10</tagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/3</untagged-ports>
+    </interface>
+    <interface>
+      <name>vlan6</name>
+      <type
+        xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+      <parent-bridge xmlns="http://www.dellemc.com/networking/os10/dell-interface">600</parent-bridge>
+      <tagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">port-channel10</tagged-ports>
+      <untagged-ports xmlns="http://www.dellemc.com/networking/os10/dell-interface">ethernet1/1/5</untagged-ports>
+    </interface>
+    <interface>
+      <name>virtual-network500</name>
+      <type
+        xmlns:base-if="http://www.dellemc.com/networking/os10/dell-base-interface-common">base-if:virtualNetwork</type>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>192.168.5.2/24</primary-addr>
+        </address>
+        <virtual-router-ipv4>
+          <anycast-ipv4-addr>192.168.5.1</anycast-ipv4-addr>
+        </virtual-router-ipv4>
+      </ipv4>
+      <vrf xmlns="http://www.dellemc.com/networking/os10/dell-vrf">
+        <name>tenant1</name>
+      </vrf>
+    </interface>
+    <interface>
+      <name>virtual-network600</name>
+      <type
+        xmlns:base-if="http://www.dellemc.com/networking/os10/dell-base-interface-common">base-if:virtualNetwork</type>
+      <ipv4 xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+        <address>
+          <primary-addr>192.168.6.2/24</primary-addr>
+        </address>
+        <virtual-router-ipv4>
+          <anycast-ipv4-addr>192.168.6.1</anycast-ipv4-addr>
+        </virtual-router-ipv4>
+      </ipv4>
+      <vrf xmlns="http://www.dellemc.com/networking/os10/dell-vrf">
+        <name>tenant1</name>
+      </vrf>
+    </interface>
+    <vlan-globals xmlns="http://www.dellemc.com/networking/os10/dell-interface">
+      <default-vlan-id>vlan1</default-vlan-id>
+    </vlan-globals>
+  </interfaces>
+  <ip-config xmlns="http://www.dellemc.com/networking/os10/dell-ip">
+    <ipv6>
+      <ipv6-enable>true</ipv6-enable>
+      <unicast-routing>true</unicast-routing>
+    </ipv6>
+    <virtual-router>
+      <anycast-mac-addr>00:01:01:01:01:01</anycast-mac-addr>
+    </virtual-router>
+  </ip-config>
+  <iscsi-cfg xmlns="http://www.dellemc.com/networking/os10/dell-iscsi-optimization">
+    <target>
+      <port>3260</port>
+    </target>
+    <target>
+      <port>860</port>
+    </target>
+  </iscsi-cfg>
+  <mcast-snooping-global-config xmlns="http://www.dellemc.com/networking/os10/dell-multicast-snooping">
+    <igmp-snooping>
+      <enable>true</enable>
+      <flood>false</flood>
+    </igmp-snooping>
+    <mld-snooping>
+      <enable>true</enable>
+    </mld-snooping>
+  </mcast-snooping-global-config>
+  <nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+    <enable-nacm>true</enable-nacm>
+    <read-default>permit</read-default>
+    <write-default>deny</write-default>
+    <exec-default>permit</exec-default>
+    <groups>
+      <group>
+        <name>netoperator</name>
+        <user-name>guest</user-name>
+      </group>
+      <group>
+        <name>netadmin</name>
+      </group>
+      <group>
+        <name>secadmin</name>
+      </group>
+      <group>
+        <name>sysadmin</name>
+        <user-name>admin</user-name>
+        <user-name>amazon</user-name>
+      </group>
+      <group>
+        <name>service</name>
+        <user-name>service</user-name>
+      </group>
+    </groups>
+    <rule-list>
+      <name>guest-acl</name>
+      <group>netoperator</group>
+      <rule>
+        <name>permit-edit-config</name>
+        <module-name>ietf-netconf</module-name>
+        <rpc-name>edit-config</rpc-name>
+        <access-operations>create update delete exec</access-operations>
+        <action>deny</action>
+        <comment>Do not allow guests to edit the configuration.</comment>
+      </rule>
+    </rule-list>
+    <rule-list>
+      <name>sysadmin-acl</name>
+      <group>sysadmin</group>
+      <rule>
+        <name>permit-all</name>
+        <module-name>*</module-name>
+        <access-operations>*</access-operations>
+        <action>permit</action>
+        <comment>Allow the admin group complete access except serviceability commands</comment>
+      </rule>
+    </rule-list>
+    <rule-list>
+      <name>service-acl</name>
+      <group>service</group>
+      <rule>
+        <name>permit-all</name>
+        <module-name>*</module-name>
+        <access-operations>*</access-operations>
+        <action>permit</action>
+        <comment>Allow the service group complete access to all operations and data</comment>
+      </rule>
+    </rule-list>
+  </nacm>
+  <node-topology xmlns="http://www.dellemc.com/networking/os10/dell-node-management">
+    <topology-id>1</topology-id>
+    <discovery-interface>ethernet1/1/8</discovery-interface>
+    <discovery-interface>ethernet1/1/9</discovery-interface>
+    <topology-type>VLT</topology-type>
+    <vlt-domain xmlns="http://www.dellemc.com/networking/os10/dell-vlt">
+      <vlt-mac>aa:bb:cc:dd:ee:ff</vlt-mac>
+    </vlt-domain>
+  </node-topology>
+  <nve xmlns="http://www.dellemc.com/networking/os10/nvo-nve">
+    <id>1</id>
+    <source-if>loopback1</source-if>
+  </nve>
+  <policy-entry xmlns="http://www.dellemc.com/networking/os10/dell-diffserv-policy">
+    <name>policy-iscsi</name>
+    <ptype>application</ptype>
+  </policy-entry>
+  <port-groups xmlns="http://www.dellemc.com/networking/os10/dell-port-group">
+    <port-group>
+      <id>port-group1/1/1</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_4x4</breakout-mode>
+      <port-speed>25GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/2</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_4x4</breakout-mode>
+      <port-speed>25GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/3</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_4x4</breakout-mode>
+      <port-speed>25GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/4</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_4x4</breakout-mode>
+      <port-speed>25GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/5</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_4x4</breakout-mode>
+      <port-speed>25GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/6</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_4x4</breakout-mode>
+      <port-speed>25GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/7</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_1x1</breakout-mode>
+      <port-speed>100GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/8</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_1x1</breakout-mode>
+      <port-speed>100GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/9</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_1x1</breakout-mode>
+      <port-speed>100GIGE</port-speed>
+    </port-group>
+    <port-group>
+      <id>port-group1/1/10</id>
+      <phy-mode>ETHERNET</phy-mode>
+      <breakout-mode>BREAKOUT_1x1</breakout-mode>
+      <port-speed>100GIGE</port-speed>
+    </port-group>
+  </port-groups>
+  <ports xmlns="http://www.dellemc.com/networking/os10/dell-port">
+    <port>
+      <name>phy-eth1/1/1</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/2</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/3</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/4</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/5</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/6</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/7</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/8</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/9</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/10</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/11</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/12</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/13</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/14</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/15</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/16</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/17</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/18</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/19</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/20</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/21</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/22</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/23</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/24</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/25</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/26</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/27</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+    <port>
+      <name>phy-eth1/1/28</name>
+      <breakout-mode>DISABLED</breakout-mode>
+    </port>
+  </ports>
+  <routing xmlns="http://www.dellemc.com/networking/os10/dell-routing">
+    <instance>
+      <vrf-name>default</vrf-name>
+    </instance>
+    <instance>
+      <vrf-name>tenant1</vrf-name>
+    </instance>
+  </routing>
+  <snmp-server xmlns="http://www.dellemc.com/networking/os10/dell-snmp">
+    <global>
+      <sys-contact>Contact Support</sys-contact>
+      <sys-location>United States</sys-location>
+    </global>
+  </snmp-server>
+  <system xmlns="http://www.dellemc.com/networking/os10/dell-system">
+    <hostname>LEAF11</hostname>
+    <system-user>
+      <name>linuxadmin</name>
+      <password>$6$5DdOHYg5$JCE1vMSmkQOrbh31U74PIPv7lyOgRmba1IxhkYibppMXs1KM4Y.gbTPcxyMP/PHUkMc5rdk/ZLv9Sfv3ALtB61</password>
+    </system-user>
+    <user>
+      <name>admin</name>
+      <password>$6$q9QBeYjZ$jfxzVqGhkxX3smxJSH9DDz7/3OJc6m5wjF8nnLD7/VKx8SloIhp4NoGZs0I/UNwh8WVuxwfd9q4pWIgNs5BKH.</password>
+      <group>sysadmin</group>
+      <privilege-level>15</privilege-level>
+    </user>
+    <telnet>
+      <telnet-server>false</telnet-server>
+    </telnet>
+  </system>
+  <telemetry-system xmlns="http://openconfig.net/yang/telemetry">
+    <sensor-groups>
+      <sensor-group>
+        <sensor-group-id>bgp</sensor-group-id>
+        <config>
+          <sensor-group-id>bgp</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>bgp/bgp-oper/bgpPrfxCntrsEntry</path>
+            <config>
+              <path>bgp/bgp-oper/bgpPrfxCntrsEntry</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>bgp/bgp-oper/bgpPeerCount</path>
+            <config>
+              <path>bgp/bgp-oper/bgpPeerCount</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>bgp-peer</sensor-group-id>
+        <config>
+          <sensor-group-id>bgp-peer</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>infra-bgp/peer-state/peer-status</path>
+            <config>
+              <path>infra-bgp/peer-state/peer-status</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>buffer</sensor-group-id>
+        <config>
+          <sensor-group-id>buffer</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>base-qos/queue-stat</path>
+            <config>
+              <path>base-qos/queue-stat</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-qos/priority-group-stat</path>
+            <config>
+              <path>base-qos/priority-group-stat</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-qos/buffer-pool-stat</path>
+            <config>
+              <path>base-qos/buffer-pool-stat</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-qos/buffer-pool</path>
+            <config>
+              <path>base-qos/buffer-pool</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>device</sensor-group-id>
+        <config>
+          <sensor-group-id>device</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>base-pas/chassis</path>
+            <config>
+              <path>base-pas/chassis</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/card</path>
+            <config>
+              <path>base-pas/card</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-switch/switching-entities/switch-stats</path>
+            <config>
+              <path>base-switch/switching-entities/switch-stats</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>environment</sensor-group-id>
+        <config>
+          <sensor-group-id>environment</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>base-pas/entity</path>
+            <config>
+              <path>base-pas/entity</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/psu</path>
+            <config>
+              <path>base-pas/psu</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/fan-tray</path>
+            <config>
+              <path>base-pas/fan-tray</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/fan</path>
+            <config>
+              <path>base-pas/fan</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/led</path>
+            <config>
+              <path>base-pas/led</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/temperature</path>
+            <config>
+              <path>base-pas/temperature</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/temp_threshold</path>
+            <config>
+              <path>base-pas/temp_threshold</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/media</path>
+            <config>
+              <path>base-pas/media</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>base-pas/media-channel</path>
+            <config>
+              <path>base-pas/media-channel</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>interface</sensor-group-id>
+        <config>
+          <sensor-group-id>interface</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>if/interfaces-state/interface/statistics</path>
+            <config>
+              <path>if/interfaces-state/interface/statistics</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>dell-base-if-cmn/if/interfaces-state/interface</path>
+            <config>
+              <path>dell-base-if-cmn/if/interfaces-state/interface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>lag</sensor-group-id>
+        <config>
+          <sensor-group-id>lag</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>dell-base-if-cmn/if/interfaces</path>
+            <config>
+              <path>dell-base-if-cmn/if/interfaces</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>system</sensor-group-id>
+        <config>
+          <sensor-group-id>system</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>system-status/current-status</path>
+            <config>
+              <path>system-status/current-status</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-bfd</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-bfd</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-bfd/bfd</path>
+            <config>
+              <path>openconfig-bfd/bfd</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-bgp</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-bgp</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-network-instance/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor</path>
+            <config>
+              <path>openconfig-network-instance/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-bgp-rib</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-bgp-rib</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-network-instance/network-instances/network-instance/protocols/protocol/bgp/rib/afi-safis/afi-safi</path>
+            <config>
+              <path>openconfig-network-instance/network-instances/network-instance/protocols/protocol/bgp/rib/afi-safis/afi-safi</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-buffer</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-buffer</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-qos/qos/interfaces/interface</path>
+            <config>
+              <path>openconfig-qos/qos/interfaces/interface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-device</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-device</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-platform/components/component</path>
+            <config>
+              <path>openconfig-platform/components/component</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>openconfig-network-instance/network-instances/network-instance</path>
+            <config>
+              <path>openconfig-network-instance/network-instances/network-instance</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-environment</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-environment</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-platform/components/component</path>
+            <config>
+              <path>openconfig-platform/components/component</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-interface</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-interface</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-interfaces/interfaces/interface</path>
+            <config>
+              <path>openconfig-interfaces/interfaces/interface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-lacp</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-lacp</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-lacp/lacp</path>
+            <config>
+              <path>openconfig-lacp/lacp</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-lag</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-lag</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-interfaces/interfaces/interface</path>
+            <config>
+              <path>openconfig-interfaces/interfaces/interface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-lldp</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-lldp</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-lldp/lldp</path>
+            <config>
+              <path>openconfig-lldp/lldp</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-stp</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-stp</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-spanning-tree/stp</path>
+            <config>
+              <path>openconfig-spanning-tree/stp</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-system</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-system</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-system/system</path>
+            <config>
+              <path>openconfig-system/system</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>openconfig-platform/components/component</path>
+            <config>
+              <path>openconfig-platform/components/component</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-vendor-ufd</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-vendor-ufd</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>ufd/uplink-state-group-stats/ufd-groups</path>
+            <config>
+              <path>ufd/uplink-state-group-stats/ufd-groups</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-vxlan</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-vxlan</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-vxlan/vxlan/state/vxlan-tunnel-infos</path>
+            <config>
+              <path>openconfig-vxlan/vxlan/state/vxlan-tunnel-infos</path>
+            </config>
+          </sensor-path>
+          <sensor-path>
+            <path>openconfig-network-instance/network-instances/network-instance</path>
+            <config>
+              <path>openconfig-network-instance/network-instances/network-instance</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-vlan</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-vlan</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-interfaces/interfaces/interface</path>
+            <config>
+              <path>openconfig-interfaces/interfaces/interface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-vrrp</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-vrrp</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-interfaces/interfaces/interface/subinterfaces/subinterface</path>
+            <config>
+              <path>openconfig-interfaces/interfaces/interface/subinterfaces/subinterface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+      <sensor-group>
+        <sensor-group-id>oc-relayagent</sensor-group-id>
+        <config>
+          <sensor-group-id>oc-relayagent</sensor-group-id>
+        </config>
+        <sensor-paths>
+          <sensor-path>
+            <path>openconfig-relay-agent/relay-agent/dhcp/interfaces/interface</path>
+            <config>
+              <path>openconfig-relay-agent/relay-agent/dhcp/interfaces/interface</path>
+            </config>
+          </sensor-path>
+        </sensor-paths>
+      </sensor-group>
+    </sensor-groups>
+  </telemetry-system>
+  <uplink-state-groups xmlns="http://www.dellemc.com/networking/os10/dell-ufd"/>
+  <vn xmlns="http://www.dellemc.com/networking/os10/nvo-virtual-network">
+    <vn-instance>
+      <name>500</name>
+      <nve-id>1</nve-id>
+      <local-tunnel-ep>
+        <name>vxlan-500</name>
+        <type
+          xmlns:nvo-types="http://www.dellemc.com/networking/os10/nvo-types">nvo-types:vxlan</type>
+        <vxlan xmlns="http://www.dellemc.com/networking/os10/nvo-vxlan">
+          <vni>500</vni>
+        </vxlan>
+      </local-tunnel-ep>
+    </vn-instance>
+    <vn-instance>
+      <name>600</name>
+      <nve-id>1</nve-id>
+      <local-tunnel-ep>
+        <name>vxlan-600</name>
+        <type
+          xmlns:nvo-types="http://www.dellemc.com/networking/os10/nvo-types">nvo-types:vxlan</type>
+        <vxlan xmlns="http://www.dellemc.com/networking/os10/nvo-vxlan">
+          <vni>600</vni>
+        </vxlan>
+      </local-tunnel-ep>
+    </vn-instance>
+  </vn>
+  <vrf-config xmlns="http://www.dellemc.com/networking/os10/dell-vrf">
+    <vrf>
+      <vrf-name>default</vrf-name>
+    </vrf>
+    <vrf>
+      <vrf-name>tenant1</vrf-name>
+    </vrf>
+  </vrf-config>
+</config>
