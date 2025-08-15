@@ -1,0 +1,341 @@
+! Version 10.5.5.6
+! Last configuration change at Aug  15 14:51:53 2025
+!
+ip vrf default
+!
+ip vrf tenant1
+!
+ip virtual-router mac-address 00:01:01:01:01:01
+iscsi target port 860
+iscsi target port 3260
+hostname LEAF11
+no service obscure-password
+system-user linuxadmin password $6$5DdOHYg5$JCE1vMSmkQOrbh31U74PIPv7lyOgRmba1IxhkYibppMXs1KM4Y.gbTPcxyMP/PHUkMc5rdk/ZLv9Sfv3ALtB61
+spanning-tree mode rstp
+username admin password $6$q9QBeYjZ$jfxzVqGhkxX3smxJSH9DDz7/3OJc6m5wjF8nnLD7/VKx8SloIhp4NoGZs0I/UNwh8WVuxwfd9q4pWIgNs5BKH. role sysadmin priv-lvl 15
+aaa authentication login default local
+aaa authentication login console local
+!
+class-map type application class-iscsi
+!
+policy-map type application policy-iscsi
+!
+virtual-network 500
+!
+virtual-network 600
+!
+port-group 1/1/1
+ mode Eth 25g-4x
+!
+port-group 1/1/2
+ mode Eth 25g-4x
+!
+port-group 1/1/3
+ mode Eth 25g-4x
+!
+port-group 1/1/4
+ mode Eth 25g-4x
+!
+port-group 1/1/5
+ mode Eth 25g-4x
+!
+port-group 1/1/6
+ mode Eth 25g-4x
+!
+port-group 1/1/7
+ mode Eth 100g-1x
+!
+port-group 1/1/8
+ mode Eth 100g-1x
+!
+port-group 1/1/9
+ mode Eth 100g-1x
+!
+port-group 1/1/10
+ mode Eth 100g-1x
+!
+interface vlan1
+ no shutdown
+!
+interface vlan5
+ virtual-network 500
+ no shutdown
+!
+interface vlan6
+ virtual-network 600
+ no shutdown
+!
+interface vlan4000
+ description VLANVLT
+ no shutdown
+ ip address 192.168.200.1/24
+!
+interface port-channel10
+ no shutdown
+ switchport mode trunk
+ switchport trunk allowed vlan 5-6
+ vlt-port-channel 10
+!
+interface loopback0
+ description BGPLOOPBACK
+ no shutdown
+ ip address 10.0.0.11/32
+!
+interface loopback1
+ description VTEPLOOPBACK
+ no shutdown
+ ip address 20.0.0.11/32
+!
+nve
+ source-interface loopback1
+!
+interface mgmt1/1/1
+ no shutdown
+ no ip address dhcp
+ ip address 192.168.1.150/24
+ ipv6 address autoconfig
+!
+interface ethernet1/1/1
+ description LINKTOSPINE1LINK1
+ no shutdown
+ no switchport
+ mtu 9216
+ ip address 172.16.1.1/30
+ flowcontrol receive off
+!
+interface ethernet1/1/2
+ description LINKTOSPINE2LINK2
+ no shutdown
+ no switchport
+ mtu 9216
+ ip address 172.16.1.5/30
+ flowcontrol receive off
+!
+interface ethernet1/1/3
+ description LINKTOPC1
+ no shutdown
+ switchport access vlan 5
+ flowcontrol receive off
+!
+interface ethernet1/1/4
+ description LINKTOSWCLIENTE1
+ no shutdown
+ channel-group 10
+ no switchport
+ flowcontrol receive off
+!
+interface ethernet1/1/5
+ description LINKTOPC7
+ no shutdown
+ switchport access vlan 6
+ flowcontrol receive off
+!
+interface ethernet1/1/6
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/7
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/8
+ description VLTLINK
+ no shutdown
+ no switchport
+ flowcontrol receive off
+!
+interface ethernet1/1/9
+ description VLTLINK
+ no shutdown
+ no switchport
+ flowcontrol receive off
+!
+interface ethernet1/1/10
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/11
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/12
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/13
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/14
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/15
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/16
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/17
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/18
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/19
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/20
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/21
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/22
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/23
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/24
+ shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/25
+ no shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/26
+ no shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/27
+ no shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface ethernet1/1/28
+ no shutdown
+ switchport access vlan 1
+ flowcontrol receive off
+!
+interface virtual-network500
+ no shutdown
+ ip vrf forwarding tenant1
+ ip address 192.168.5.2/24
+ ip virtual-router address 192.168.5.1
+!
+interface virtual-network600
+ no shutdown
+ ip vrf forwarding tenant1
+ ip address 192.168.6.2/24
+ ip virtual-router address 192.168.6.1
+!
+router bgp 65200
+ router-id 10.0.0.11
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ !
+ neighbor 172.16.1.2
+  description BGPTOSPINE1LINK1
+  remote-as 65100
+  no shutdown
+ !
+ neighbor 172.16.1.6
+  description BGPTOSPINE2LINK2
+  remote-as 65101
+  no shutdown
+ !
+ neighbor 10.0.0.1
+  description BGPPEERLOOPBACK
+  ebgp-multihop 4
+  remote-as 65100
+  send-community extended
+  timers 1 3
+  update-source loopback0
+  no shutdown
+  !
+  address-family ipv4 unicast
+   no activate
+  !
+  address-family l2vpn evpn
+   activate
+ !
+ neighbor 10.0.0.2
+  description BGPPEERLOOPBACK
+  ebgp-multihop 4
+  remote-as 65101
+  send-community extended
+  timers 1 3
+  update-source loopback0
+  no shutdown
+  !
+  address-family ipv4 unicast
+   no activate
+  !
+  address-family l2vpn evpn
+   activate
+ !
+ neighbor 192.168.200.2
+  description BGPVLTPEER
+  remote-as 65200
+  no shutdown
+!
+vlt-domain 1
+ discovery-interface ethernet1/1/8-1/1/9
+ vlt-mac aa:bb:cc:dd:ee:ff
+!
+evpn
+ !
+ evi 500
+  vni 500
+  rd 20.0.0.11:500
+  route-target 62000:500 both
+  route-target 63000:500 import
+ !
+ evi 600
+  vni 600
+  rd 20.0.0.13:600
+  route-target 62000:600 both
+  route-target 63000:600 import
+!
+virtual-network 500
+ !
+ vxlan-vni 500
+!
+virtual-network 600
+ !
+ vxlan-vni 600
+!
+snmp-server contact "Contact Support"
+!
+telemetry
